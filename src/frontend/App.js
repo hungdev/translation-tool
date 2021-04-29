@@ -1,10 +1,16 @@
 import './App.css';
+import axios from 'axios'
 
 function App() {
 
-  const onHandleChange = (ev) => {
-    // console.log('eee', ev.target.files[0].webkitRelativePath)
-    console.log('eee', URL.createObjectURL(ev.target.files[0]))
+  const onHandleChange = async (ev) => {
+    const form = new FormData()
+    form.append('files', ev.target.files[0])
+    form.append('outputPath', 'translation-cee')
+
+    const trans = await axios.post('http://localhost:5050/api/translate', form)
+    console.log('trans', trans)
+
   }
   return (
     <div className="App">
@@ -18,9 +24,7 @@ function App() {
           disabled={false}
           name={'input-path'}
           id={'input-path'}
-          accept={'application/JSON'}
-          directory=""
-          webkitdirectory=""
+          accept='application/JSON'
           multiple
           onChange={onHandleChange}
           className="hand"
