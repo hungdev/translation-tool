@@ -9,7 +9,7 @@ export const translateMessage = async (arr, lang = 'vi') => {
     const mapToArrayMessage = result.map(e => e.value.text)
     return mapToArrayMessage
   } catch (error) {
-    console.log('translateMessage', err)
+    console.log('translateMessage', error)
   }
 }
 
